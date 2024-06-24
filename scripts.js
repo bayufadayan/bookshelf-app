@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const incompleteBookshelf = document.getElementById('incomplete-bookshelf');
   const completeBookshelf = document.getElementById('complete-bookshelf');
   const searchBook = document.getElementById('search-book');
+  let bookToDeleteId = null;
+  let bookToEditId = null;
 
   bookForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -74,7 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div>
         <button class="btn btn-secondary" onclick="toggleComplete(${book.id})">${book.isComplete ? 'Belum Selesai' : 'Selesai'}</button>
-        <button class="btn btn-danger" onclick="deleteBook(${book.id})">Hapus</button>
+        <button class="btn btn-info" onclick="showEditPopup(${book.id})">Edit</button>
+        <button class="btn btn-danger" onclick="showDeletePopup(${book.id})">Hapus</button>
       </div>
     `;
     return bookItem;
@@ -92,12 +95,46 @@ document.addEventListener('DOMContentLoaded', function() {
     renderBooks();
   };
 
+  window.showDeletePopup = function(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus buku ini?')) {
+      deleteBook(id);
+    }
+  };
+
   window.deleteBook = function(id) {
     let books = getBooks();
     books = books.filter(book => book.id !== id);
     localStorage.setItem('books', JSON.stringify(books));
     renderBooks();
   };
+
+  window.showEditPopup = function(id) {
+    bookToEditId = id;
+    const books = getBooks();
+    const book = books.find(book => book.id === id);
+
+    const newTitle = prompt('Edit Judul Buku:', book.title);
+    const newAuthor = prompt('Edit Penulis Buku:', book.author);
+    const newYear = prompt('Edit Tahun Terbit:', book.year);
+    const newIsComplete = confirm('Apakah buku sudah selesai dibaca?');
+
+    if (newTitle && newAuthor && newYear) {
+      saveEditedBook(newTitle, newAuthor, newYear, newIsComplete);
+    }
+  };
+
+  function saveEditedBook(title, author, year, isComplete) {
+    let books = getBooks();
+    books = books.map(book => {
+      if (book.id === bookToEditId) {
+        return { ...book, title, author, year: parseInt(year), isComplete };
+      }
+      return book;
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+    renderBooks();
+  }
 
   renderBooks();
 });
