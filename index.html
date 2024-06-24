@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf Apps</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="text-center my-4">
+        <h1>Bookshelf Apps</h1>
+        <hr />
+      </header>
+
+      <section id="input-book" class="mb-4">
+        <h2 class="mb-3 sub-heading">Tambah Buku</h2>
+        <form id="book-form">
+          <div class="form-group">
+            <input
+              type="text"
+              id="book-title"
+              class="form-control"
+              placeholder="Judul Buku"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="book-author"
+              class="form-control"
+              placeholder="Penulis Buku"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="book-year"
+              class="form-control"
+              placeholder="Tahun Terbit"
+              required
+            />
+          </div>
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              id="book-complete"
+              class="form-check-input"
+            />
+            <label class="form-check-label" for="book-complete"
+              >Selesai Dibaca</label
+            >
+          </div>
+          <button type="submit" class="btn btn-primary">Tambah Buku</button>
+        </form>
+      </section>
+
+      <hr>
+
+      <section id="book-list">
+        <h2 class="mb-3 sub-heading">Rak Buku</h2>
+        <div class="form-group">
+          <input
+            type="text"
+            id="search-book"
+            class="form-control"
+            placeholder="Cari Buku"
+          />
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Belum Selesai Dibaca</h3>
+            <div id="incomplete-bookshelf" class="list-group"></div>
+          </div>
+          <div class="col-md-6">
+            <h3>Selesai Dibaca</h3>
+            <div id="complete-bookshelf" class="list-group"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
