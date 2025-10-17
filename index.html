@@ -1,106 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bookshelf Apps</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="container">
-    <header class="text-center my-4">
-      <h1>Bookshelf Apps</h1>
-      <hr>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf App</title>
+
+    <!-- Impor script kamu di sini -->
+    <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Bookshelf App</h1>
     </header>
 
-    <section id="input-book" class="mb-4">
-      <h2 class="mb-3 sub-heading">Tambah Buku</h2>
-      <form id="book-form">
-        <div class="form-group">
-          <input type="text" id="book-title" class="form-control" placeholder="Judul Buku" required />
-        </div>
-        <div class="form-group">
-          <input type="text" id="book-author" class="form-control" placeholder="Penulis Buku" required />
-        </div>
-        <div class="form-group">
-          <input type="number" id="book-year" class="form-control" placeholder="Tahun Terbit" required />
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" id="book-complete" class="form-check-input" />
-          <label class="form-check-label" for="book-complete">Selesai Dibaca</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Tambah Buku</button>
-      </form>
-    </section>
-    <hr>
-    <section id="book-list">
-      <h2 class="mb-3 sub-heading">Rak Buku</h2>
-      <div class="form-group">
-        <input type="text" id="search-book" class="form-control" placeholder="Cari Buku" />
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <h3>Belum Selesai Dibaca</h3>
-          <div id="incomplete-bookshelf" class="list-group"></div>
-        </div>
-        <div class="col-md-6">
-          <h3>Selesai Dibaca</h3>
-          <div id="complete-bookshelf" class="list-group"></div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Hapus Buku</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+    <main>
+      <section>
+        <h2>Tambah Buku Baru</h2>
+        <form id="bookForm" data-testid="bookForm">
+          <div>
+            <label for="bookFormTitle">Judul</label>
+            <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput" />
+          </div>
+          <div>
+            <label for="bookFormAuthor">Penulis</label>
+            <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput" />
+          </div>
+          <div>
+            <label for="bookFormYear">Tahun</label>
+            <input id="bookFormYear" type="number" required data-testid="bookFormYearInput" />
+          </div>
+          <div>
+            <label for="bookFormIsComplete">Selesai dibaca</label>
+            <input
+              id="bookFormIsComplete"
+              type="checkbox"
+              data-testid="bookFormIsCompleteCheckbox"
+            />
+          </div>
+          <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
+            Masukkan Buku ke rak <span>Belum selesai dibaca</span>
           </button>
-        </div>
-        <div class="modal-body">Apakah Anda yakin ingin menghapus buku ini?</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-danger" id="confirmDeleteButton">Hapus</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        </form>
+      </section>
 
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit Buku</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+      <section>
+        <h2>Cari Buku</h2>
+        <form id="searchBook" data-testid="searchBookForm">
+          <label for="searchBookTitle">Judul</label>
+          <input id="searchBookTitle" type="text" data-testid="searchBookFormTitleInput" />
+          <button id="searchSubmit" type="submit" data-testid="searchBookFormSubmitButton">
+            Cari
           </button>
-        </div>
-        <div class="modal-body">
-          <form id="edit-book-form">
-            <div class="form-group">
-              <input type="text" id="edit-book-title" class="form-control" placeholder="Judul Buku" required />
-            </div>
-            <div class="form-group">
-              <input type="text" id="edit-book-author" class="form-control" placeholder="Penulis Buku" required />
-            </div>
-            <div class="form-group">
-              <input type="number" id="edit-book-year" class="form-control" placeholder="Tahun Terbit" required />
-            </div>
-            <div class="form-group form-check">
-              <input type="checkbox" id="edit-book-complete" class="form-check-input" />
-              <label class="form-check-label" for="edit-book-complete">Selesai Dibaca</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+        </form>
+      </section>
 
-  <script src="scripts.js"></script>
-</body>
+      <section>
+        <h2>Belum selesai dibaca</h2>
+
+        <div id="incompleteBookList" data-testid="incompleteBookList">
+          <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+          <div data-bookid="123123123" data-testid="bookItem">
+            <h3 data-testid="bookItemTitle">Judul Buku 1</h3>
+            <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
+            <p data-testid="bookItemYear">Tahun: 2030</p>
+            <div>
+              <button data-testid="bookItemIsCompleteButton">Selesai dibaca</button>
+              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+              <button data-testid="bookItemEditButton">Edit Buku</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Selesai dibaca</h2>
+
+        <div id="completeBookList" data-testid="completeBookList">
+          <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+          <div data-bookid="456456456" data-testid="bookItem">
+            <h3 data-testid="bookItemTitle">Judul Buku 2</h3>
+            <p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
+            <p data-testid="bookItemYear">Tahun: 2030</p>
+            <div>
+              <button data-testid="bookItemIsCompleteButton">Selesai dibaca</button>
+              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+              <button data-testid="bookItemEditButton">Edit Buku</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
