@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #F7FEE7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+    padding-inline: 16px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 24px;
+    border-radius: 14px;
+    color: #0B1B0B;
+    background: linear-gradient(135deg, #ECFCCB, #D9F99D);
+    border: 1px solid rgba(101, 163, 13, 0.30);
+    box-shadow: 0 8px 24px rgba(101, 163, 13, 0.18);
+}
+
+h1 {
+    display: flex;
+    width: fit-content;
+    max-width: 800px;
+    font-weight: 700;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    gap: 12px;
+}
+
+section {
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 26px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid rgba(101, 163, 13, 0.12);
+}
+
+h2 {
+    padding: 16px;
+    color: #0B1B0B;
+    background: linear-gradient(135deg, #D9F99D, #A3E635);
+    border-bottom: 1px solid rgba(101, 163, 13, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+form>div {
+    display: flex;
+    gap: 6px;
+}
+
+label {
+    font-weight: 600;
+    color: #374151;
+    width: 160px;
+}
+
+input {
+    padding: 10px 8px;
+    border: 1px solid #D1D5DB;
+    border-radius: 10px;
+    color: #111827;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color .2s;
+    background-color: #FFFFFF;
+}
+
+input:focus {
+    border-color: #A3E635;
+    box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.25);
+    background-color: #FAFEEB;
+}
+
+.read-check-box-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    flex-direction: row-reverse;
+    width: fit-content;
+    background: rgba(224, 255, 151, 0.82);
+    border: 1px solid rgba(101, 163, 13, 0.18);
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .2s ease;
+    backdrop-filter: saturate(120%) blur(2px);
+}
+
+.read-check-box-container:active {
+    transform: translateY(1px);
+}
+
+.read-check-box-container:has(.read-check-box:checked) {
+    background: linear-gradient(135deg, #0c1f15, #0b1f1b);
+    border-color: #1f7a52;
+    box-shadow:
+        0 8px 24px rgba(52, 211, 153, .25),
+        inset 0 0 0 1px rgba(52, 211, 153, .25);
+}
+
+.read-check-box-container label {
+    max-width: 260px;
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.25;
+    color: #374151;
+    font-weight: 600;
+    letter-spacing: .2px;
+    user-select: none;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+
+.read-check-box-container:has(.read-check-box:checked) label {
+    color: #fff;
+}
+
+.read-check-box {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+    border: 2px solid #4b5563;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .15s ease;
+    outline: none;
+}
+
+.read-check-box:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+}
+
+.read-check-box:active {
+    transform: scale(.96);
+}
+
+.read-check-box:focus-visible {
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.35);
+}
+
+.read-check-box::after {
+    content: "";
+    width: 12px;
+    height: 6px;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    transform: rotate(-45deg) translateY(-1px) scale(.85);
+    transform-origin: center;
+    opacity: 0;
+    transition: opacity .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.read-check-box:checked {
+    background: radial-gradient(120% 120% at 10% 10%, #34d399 0%, #16a34a 55%, #059669 100%);
+    border-color: #16a34a;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, .55),
+        0 4px 16px rgba(16, 185, 129, .35);
+}
+
+.read-check-box:checked::after {
+    border-left-color: #ffffff;
+    border-bottom-color: #ffffff;
+    opacity: 1;
+    transform: rotate(-45deg) translateY(-8px) translateX(3px) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .read-check-box-container,
+    .read-check-box,
+    .read-check-box::after,
+    .read-check-box-container label {
+        transition: none !important;
+    }
+}
+
+button {
+    padding: 14px 12px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #84CC16;
+    color: #0B1B0B;
+    font-family: "Poppins";
+    font-size: 16px;
+    font-weight: 700;
+    transition: all .25s ease;
+    box-shadow: 0px 6px 16px rgba(132, 204, 22, 0.35);
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #A3E635;
+    transform: translateY(-2px);
+    box-shadow: 0px 10px 22px rgba(250, 204, 21, 0.28);    
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#incompleteBookList,
+#completeBookList {
+    display: flex;
+    gap: 10px;
+    margin: 10px 14px;
+    flex-wrap: wrap;
+    transition: all .25s ease;
+}
+
+#completeBookList > div, #incompleteBookList > div {
+    padding: 10px 16px;
+    border: 2px solid rgba(0, 0, 0, .06);
+    border-radius: 20px;
+    flex: 1;
+    min-width: 30%;
+    max-width: 50%;
+}
