@@ -182,8 +182,6 @@ function handleBookFormSubmit(event) {
     event.preventDefault();
     addBook()
     readBooks()
-
-
 }
 
 function storeBook(item) {
@@ -194,6 +192,9 @@ function storeBook(item) {
 }
 
 function deleteBook(id) {
+    let books = JSON.parse(localStorage.getItem("books")) || [];
+    books = books.filter((book) => book.id !== id);
+    localStorage.setItem("books", JSON.stringify(books));
     readBooks();
 }
 
@@ -288,6 +289,39 @@ function renderBooks(books, containerId) {
         </div>
     `;
 
+        const deleteBtn = bookItem.querySelector("[data-testid='bookItemDeleteButton']");
+        deleteBtn.addEventListener("click", () => {
+            renderModalDelete(book.title, book.id);
+        });
+
         container.appendChild(bookItem);
+    });
+}
+
+
+
+function renderModalDelete(title, id) {
+    const modalDeleteContainer = document.querySelector(".modalDeleteBukuContainer");
+    modalDeleteContainer.style.opacity = 1;
+    modalDeleteContainer.style.zIndex = 10;
+    modalDeleteContainer.style.pointerEvents = "all";
+
+    const modalDeleteBukuParagraph = document.querySelector(".modalDeleteBuku p");
+    modalDeleteBukuParagraph.innerText = `Apakah kamu yakin ingin menghapus buku "${title}"?`;
+
+    const modalDeleteBtnGajadi = document.querySelector(".modalDeleteBuku button:first-child");
+    const modalDeleteBtnIyaah = document.querySelector(".modalDeleteBuku button:last-child");
+
+    modalDeleteBtnGajadi.addEventListener("click", () => {
+        modalDeleteContainer.style.opacity = 0;
+        modalDeleteContainer.style.zIndex = -1;
+        modalDeleteContainer.style.pointerEvents = "none";
+    });
+
+    modalDeleteBtnIyaah.addEventListener("click", () => {
+        deleteBook(id);
+        modalDeleteContainer.style.opacity = 0;
+        modalDeleteContainer.style.zIndex = -1;
+        modalDeleteContainer.style.pointerEvents = "none";
     });
 }

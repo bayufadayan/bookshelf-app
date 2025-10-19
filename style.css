@@ -345,7 +345,7 @@ button:active {
     position: relative;
 }
 
-.modalGenerateBukuContainer {
+.modalGenerateBukuContainer, .modalDeleteBukuContainer {
     background-color: rgba(0, 0, 0, .2);
     backdrop-filter: blur(20px);
     width: 100%;
@@ -362,7 +362,7 @@ button:active {
     padding-inline: 16px;
 }
 
-.modalGenerateBuku {
+.modalGenerateBuku, .modalDeleteBuku {
     background-color: #F7FEE7;
     padding: 24px;
     border-radius: 20px;
@@ -375,17 +375,18 @@ button:active {
     max-width: 400px;
 }
 
-.modalGenerateBuku div {
+.modalGenerateBuku div, .modalDeleteBuku div {
     display: flex;
     gap: 10px;
 }
 
-.modalGenerateBuku h3 {
+.modalGenerateBuku h3, .modalDeleteBuku h3 {
+    font-weight: 600;
     font-size: 24px;
     color:#1f7a52;
 }
 
-.modalGenerateBuku button {
+.modalGenerateBuku button, .modalDeleteBuku button {
     cursor: pointer;
 }
 
