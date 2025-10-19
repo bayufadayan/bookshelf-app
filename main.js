@@ -294,11 +294,14 @@ function renderBooks(books, containerId) {
             renderModalDelete(book.title, book.id);
         });
 
+        const moveButtom = bookItem.querySelector("[data-testid='bookItemIsCompleteButton']");
+        moveButtom.addEventListener("click", () => {
+            moveBook(book.id, book.isComplete);
+        });
+
         container.appendChild(bookItem);
     });
 }
-
-
 
 function renderModalDelete(title, id) {
     const modalDeleteContainer = document.querySelector(".modalDeleteBukuContainer");
@@ -324,4 +327,16 @@ function renderModalDelete(title, id) {
         modalDeleteContainer.style.zIndex = -1;
         modalDeleteContainer.style.pointerEvents = "none";
     });
+}
+
+function moveBook(id, isComplete) {
+    let books = JSON.parse(localStorage.getItem("books")) || [];
+    books = books.map((book) => {
+        if (book.id === id) {
+            book.isComplete = !isComplete;
+        }
+        return book;
+    });
+    localStorage.setItem("books", JSON.stringify(books));
+    readBooks();
 }
