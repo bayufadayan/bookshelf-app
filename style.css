@@ -16,6 +16,7 @@ body {
     width: 100%;
     gap: 16px;
     padding-inline: 16px;
+    margin-bottom: 32px;
 }
 
 header {
@@ -232,7 +233,7 @@ button {
 button:hover {
     background-color: #A3E635;
     transform: translateY(-2px);
-    box-shadow: 0px 10px 22px rgba(250, 204, 21, 0.28);    
+    box-shadow: 0px 10px 22px rgba(250, 204, 21, 0.28);
 }
 
 button:active {
@@ -244,15 +245,101 @@ button:active {
     display: flex;
     gap: 10px;
     margin: 10px 14px;
-    flex-wrap: wrap;
+    flex-direction: column;
     transition: all .25s ease;
 }
 
-#completeBookList > div, #incompleteBookList > div {
+#completeBookList>div,
+#incompleteBookList>div {
     padding: 10px 16px;
     border: 2px solid rgba(0, 0, 0, .06);
     border-radius: 20px;
     flex: 1;
-    min-width: 30%;
-    max-width: 50%;
+    width: 100%;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+#completeBookList>div:hover,
+#incompleteBookList>div:hover {
+    transform: scale(1.05);
+}
+
+.bookListContainer {
+    display: flex;
+    gap: 10px;
+}
+
+#completeBookList button,
+#incompleteBookList button {
+    width: fit-content;
+    height: auto;
+    font-size: small;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 12px;
+}
+
+@media screen and (max-width: 600px) {
+    .bookListContainer {
+        flex-direction: column;
+    }
+}
+
+#completeBookList button:nth-child(2),
+#completeBookList button:nth-child(3),
+#incompleteBookList button:nth-child(2),
+#incompleteBookList button:nth-child(3) {
+    border-radius: 100px;
+    display: flex;
+    width: 52px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: 0;
+}
+
+#completeBookList button:nth-child(1),
+#incompleteBookList button:nth-child(1) {
+    flex: 1;
+    margin: 0;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+#incompleteBookList>div>p:nth-child(2),
+#completeBookList>div>p:nth-child(2) {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .6);
+}
+
+#incompleteBookList>div>p:nth-child(3),
+#completeBookList>div>p:nth-child(3) {
+    font-size: 12px;
+    color: rgba(0, 0, 0, .6);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    padding: 2px 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, .3);
+}
+
+#incompleteBookList>div {
+    gap: 0 !important;
+    position: relative;
 }
