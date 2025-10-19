@@ -12,6 +12,7 @@ class Book {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    readBooks();
     const bookForm = document.getElementById("bookForm");
     const titleInput = document.getElementById("bookFormTitle");
     const authorInput = document.getElementById("bookFormAuthor");
@@ -285,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function addBook() {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
-        const year = yearInput.value.trim();
+        const year = Number(yearInput.value.trim());
         const isComplete = isCompleteCheckbox.checked;
         if (!title || !author || !year) return;
         const book = new Book(title, author, year, isComplete);
