@@ -27,6 +27,7 @@
               required
               data-testid="bookFormTitleInput"
               placeholder="Masukan Judul Buku"
+              tabindex="1"
             />
           </div>
           <div>
@@ -37,6 +38,7 @@
               required
               data-testid="bookFormAuthorInput"
               placeholder="Masukan Nama Pengarang"
+              tabindex="2"
             />
           </div>
           <div class="inputYear">
@@ -48,6 +50,7 @@
                 required
                 data-testid="bookFormYearInput"
                 placeholder="Tahun input buku"
+                tabindex="3"
               />
             </div>
           </div>
@@ -58,12 +61,14 @@
               type="checkbox"
               class="read-check-box"
               data-testid="bookFormIsCompleteCheckbox"
+              tabindex="4"
             />
           </div>
           <button
             id="bookFormSubmit"
             type="submit"
             data-testid="bookFormSubmitButton"
+            tabindex="5"
           >
             Masukkan Buku ke rak <span>Belum selesai dibaca</span>
           </button>
@@ -144,6 +149,60 @@
           <button type="button" id="cancelDelete">Ga jadi dah</button>
           <button type="button" id="delete">Iyaa ah!</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Modal Edit Buku -->
+    <div class="modalEditBukuContainer">
+      <div class="modalEditBuku">
+        <h3>Edit <span></span></h3>
+        <form>
+          <div>
+            <label for="bookFormEditTitle">Judul</label>
+            <input
+              id="bookFormEditTitle"
+              type="text"
+              required
+              data-testid="bookFormTitleInput"
+              placeholder="Masukan Judul Buku"
+            />
+          </div>
+          <div>
+            <label for="bookFormEditAuthor">Penulis</label>
+            <input
+              id="bookFormEditAuthor"
+              type="text"
+              required
+              data-testid="bookFormAuthorInput"
+              placeholder="Masukan Nama Pengarang"
+            />
+          </div>
+          <div class="inputYear">
+            <label for="bookFormEditYear">Tahun</label>
+            <div>
+              <input
+                id="bookFormEditYear"
+                type="number"
+                required
+                data-testid="bookFormYearInput"
+                placeholder="Tahun input buku"
+              />
+            </div>
+          </div>
+          <div class="read-check-box-container">
+            <label for="bookFormEditIsComplete">Tandai selesai dibaca</label>
+            <input
+            id="bookFormEditIsComplete"
+            type="checkbox"
+            class="read-check-box"
+            data-testid="bookFormIsCompleteCheckbox"
+            />
+          </div>
+          <div>
+            <button type="button" id="cancelEdit">Ga jadi dah</button>
+            <button type="submit" id="edit">Udah nih</button>
+          </div>
+        </form>
       </div>
     </div>
   </body>
