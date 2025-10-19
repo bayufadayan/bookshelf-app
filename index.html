@@ -36,18 +36,20 @@
               type="text"
               required
               data-testid="bookFormAuthorInput"
-              placeholder="Tuliskan Penulis buku AAA"
+              placeholder="Masukan Nama Pengarang"
             />
           </div>
-          <div>
+          <div class="inputYear">
             <label for="bookFormYear">Tahun</label>
-            <input
-              id="bookFormYear"
-              type="number"
-              required
-              data-testid="bookFormYearInput"
-              placeholder="Tahun input buku"
-            />
+            <div>
+              <input
+                id="bookFormYear"
+                type="number"
+                required
+                data-testid="bookFormYearInput"
+                placeholder="Tahun input buku"
+              />
+            </div>
           </div>
           <div class="read-check-box-container">
             <label for="bookFormIsComplete">Tandai selesai dibaca</label>
@@ -92,25 +94,28 @@
         <section>
           <h2>Belum selesai dibaca</h2>
 
-          <div id="incompleteBookList" data-testid="incompleteBookList" class="bookShelf">
+          <div
+            id="incompleteBookList"
+            data-testid="incompleteBookList"
+            class="bookShelf"
+          >
             <!-- 
             Ini adalah struktur HTML untuk masing-masing buku.
             Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-          -->
-            
-          </div>
+          --></div>
         </section>
 
         <section>
           <h2>Selesai dibaca</h2>
-
-          <div id="completeBookList" data-testid="completeBookList" class="bookShelf">
+          <div
+            id="completeBookList"
+            data-testid="completeBookList"
+            class="bookShelf"
+          >
             <!-- 
             Ini adalah struktur HTML untuk masing-masing buku.
             Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-          -->
-            
-          </div>
+          --></div>
         </section>
       </div>
     </main>
@@ -119,7 +124,10 @@
     <div class="modalGenerateBukuContainer">
       <div class="modalGenerateBuku">
         <h3>Generate Buku Baru?</h3>
-        <p>Mau langsung aku bikinin daftar buku kece buat lo? Biar rak lo agak rame gituhh</p>
+        <p>
+          Mau langsung aku bikinin daftar buku kece buat lo? Biar rak lo agak
+          rame gituhh
+        </p>
         <div>
           <button type="button" id="cancel">Skip dulu</button>
           <button type="button" id="nextStep">Gaskeun bangg!</button>
