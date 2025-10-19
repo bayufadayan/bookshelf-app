@@ -53,7 +53,7 @@ section {
     border-radius: 14px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0px;
     background: #FFFFFF;
     box-shadow: 0 6px 26px rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -263,6 +263,7 @@ button:active {
     gap: 10px;
     transition: all .3s ease-in-out;
     cursor: pointer;
+    position: relative;
 }
 
 #completeBookList>div:hover,
@@ -339,7 +340,7 @@ button:active {
     border: 1px solid rgba(0, 0, 0, .3);
 }
 
-#incompleteBookList>div {
+#incompleteBookList>div, #completeBookList>div {
     gap: 0 !important;
     position: relative;
 }
@@ -356,6 +357,7 @@ button:active {
     align-items: center;
     z-index: 999 !important;
     opacity: 0;
+    pointer-events: none;
     transition: all .25s ease;
     padding-inline: 16px;
 }
@@ -385,4 +387,84 @@ button:active {
 
 .modalGenerateBuku button {
     cursor: pointer;
+}
+
+.emptyBookShelf {
+    background-color: #e0f5ed !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px !important;
+}
+
+#emptyBookIcon {
+    background-color: #b7ffe4;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, .2);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+    transition: all .25s ease;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px;
+}
+
+#emptyBookIcon:hover {
+    transform: scale(1) !important;
+}
+
+#emptyBookIcon svg {
+    fill: #1f7a52 !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
+    transition: all .25s ease;
+}
+
+.emptyBookShelf label {
+    font-size: 20px;
+    color: #1f7a52;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.emptyBookShelf a {
+    text-decoration: none;
+    color: #1f7a52;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #f2fcf8;
+    padding: 8px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: bold;
+    transition: all .25s ease;
+}
+
+.emptyBookShelf a:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.emptyBookShelf a svg {
+    background: rgba(31, 122, 82, 0.7);
+    border-radius: 100px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
 }
