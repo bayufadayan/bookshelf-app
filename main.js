@@ -3,7 +3,9 @@ const authorDummy = ["Dewi Anggraeni", "Jonathan Blake", "Ayu Lestari", "Michael
 
 class Book {
     constructor(title, author, year, isComplete = false) {
-        this.id = Number(new Date());
+        this.id = typeof crypto !== "undefined" && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
         this.title = title;
         this.author = author;
         this.year = year;
@@ -19,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearInput = document.getElementById("bookFormYear");
     const isCompleteCheckbox = document.getElementById("bookFormIsComplete");
     const buttonFormSubmit = document.querySelector("#bookFormSubmit");
+
+    function normalizeId(id) {
+        return String(id);
+    }
 
     function syncSubmitText() {
         const t = document.querySelector("#bookFormSubmit span");
@@ -81,14 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function deleteBook(id) {
         let books = getBooks();
-        books = books.filter(b => b.id !== id);
+        books = books.filter(b => normalizeId(b.id) !== normalizeId(id));
         setBooks(books);
         readBooks();
     }
 
-    function moveBook(id, isComplete) {
+    function moveBook(id) {
         const books = getBooks().map(b => {
-            if (b.id === id) b.isComplete = !isComplete;
+            if (normalizeId(b.id) === normalizeId(id)) {
+                b.isComplete = !Boolean(b.isComplete);
+            }
             return b;
         });
         setBooks(books);
@@ -97,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function editBook(id, newTitle, newAuthor, newYear, newIsComplete) {
         const books = getBooks().map(b => {
-            if (b.id === id) {
+            if (normalizeId(b.id) === normalizeId(id)) {
                 b.title = newTitle;
                 b.author = newAuthor;
                 b.year = Number(newYear);
@@ -163,9 +171,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const btnWrap = document.createElement("div");
             btnWrap.className = "buttonContainer";
             const toggleBtn = document.createElement("button");
+            toggleBtn.setAttribute("data-bookid", book.id);
             toggleBtn.setAttribute("data-testid", "bookItemIsCompleteButton");
             toggleBtn.textContent = book.isComplete ? "Belum selesai" : "Selesai dibaca";
             const delBtn = document.createElement("button");
+            delBtn.setAttribute("data-bookid", book.id);
             delBtn.setAttribute("data-testid", "bookItemDeleteButton");
             delBtn.innerHTML = `
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -173,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </svg>
       `;
             const editBtn = document.createElement("button");
+        editBtn.setAttribute("data-bookid", book.id);
             editBtn.setAttribute("data-testid", "bookItemEditButton");
             editBtn.innerHTML = `
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -184,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderModalDelete(book.title, book.id);
             });
             toggleBtn.addEventListener("click", () => {
-                moveBook(book.id, book.isComplete);
+                moveBook(book.id);
             });
             editBtn.addEventListener("click", () => {
                 renderModalEdit(book);
